@@ -1,0 +1,82 @@
+﻿<Page x:Class="CaseManager.View.EnhancedPortfolioDiversificationReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CaseManager.View"
+      mc:Ignorable="d" 
+    
+      Title="Enhanced Portfolio Diversification Report" Height="Auto"  Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" d:DesignWidth="829.2" d:DesignHeight="1012.8"  >
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
+        <Grid Name="EnhancedPortfolioDiversification" Background="#FFB4B4B4"  Height="1000">
+
+            <ComboBox IsReadOnly="True" Height="30"  HorizontalAlignment="Left" VerticalAlignment="Top" Name="FundedEntity" IsEditable="False" IsTextSearchEnabled="False" StaysOpenOnEdit="True" Width="120" Margin="8,56,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox Name="chkFundedEntity" Width="75" Checked="FundedEntityCheckedAndUnchecked" Unchecked="FundedEntityCheckedAndUnchecked" Content="{Binding Name, Mode=TwoWay}" Command="{Binding FundedCheckBox_Click, Mode=TwoWay}"  IsChecked="{Binding CheckStatus, Mode=TwoWay}" CommandParameter="{Binding ID, Mode=TwoWay}"    >
+                        </CheckBox>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label Content="Select Funding Entity" HorizontalAlignment="Left" Margin="7,12,0,0" VerticalAlignment="Top" Width="130"/>
+
+
+
+
+            <ComboBox IsReadOnly="True" Height="30" TextBoxBase.TextChanged="TypeOfActionTextChanged" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="TypeOfAction" IsEditable="False" IsTextSearchEnabled="False" StaysOpenOnEdit="True" Width="160" SelectionChanged="TypeOfActionSelectionChanged" Margin="306,56,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox x:Name="chkTypeOfAction" Width="100" Checked="TypeOfActionCheckedAndUnchecked" Unchecked="TypeOfActionCheckedAndUnchecked" Content="{Binding Name}" IsChecked="{Binding CheckStatus}" CommandParameter="{Binding ID}"  />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label Content="Select Type of Action" HorizontalAlignment="Left" Margin="307,12,0,0" VerticalAlignment="Top" Width="130"/>
+
+
+
+            <ComboBox  IsReadOnly="True" Height="30" TextBoxBase.TextChanged="CaseTypeTextChanged" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="CaseType" IsEditable="False" IsTextSearchEnabled="False" StaysOpenOnEdit="True" Width="160" SelectionChanged="CaseTypeSelectionChanged" Margin="478,56,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox x:Name="chkCaseType" Width="220" Checked="CaseTypeCheckedAndUnchecked" Unchecked="CaseTypeCheckedAndUnchecked" Content="{Binding Name}" IsChecked="{Binding CheckStatus}" CommandParameter="{Binding ID}"  />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Label Content="Select Case Type" HorizontalAlignment="Left" Margin="474,12,0,0" VerticalAlignment="Top" Width="130"/>
+
+
+            <Label Content="Select Nature of Claim" HorizontalAlignment="Left" Margin="644,12,0,0" VerticalAlignment="Top" Width="130"/>
+            <ComboBox  IsReadOnly="True" Height="30" TextBoxBase.TextChanged="NatureofClaimTextChanged" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="NatureofClaim" IsEditable="False" IsTextSearchEnabled="False" StaysOpenOnEdit="True" Width="160" SelectionChanged="NatureofClaimSelectionChanged" Margin="649,56,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox x:Name="chkNatureofClaim" Width="220" Checked="NatureofClaimCheckedAndUnchecked" Unchecked="NatureofClaimCheckedAndUnchecked" Content="{Binding Name}" IsChecked="{Binding CheckStatus}" CommandParameter="{Binding ID}"  />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <DataGrid Name="EnhancedDataGrid" IsReadOnly="True" HorizontalAlignment="Center" Height="532" Margin="0,159,0,0" VerticalAlignment="Top" Width="810" AutoGeneratingColumn="EnhancedDataGrid_AutoGeneratingColumn"/>
+
+            <Label Content="Select Firm" HorizontalAlignment="Left" Margin="145,12,0,0" VerticalAlignment="Top" Width="130"/>
+            <ComboBox  IsReadOnly="True" Height="30" TextBoxBase.TextChanged="FirmTextChanged" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="Firm" IsEditable="False" IsTextSearchEnabled="False" StaysOpenOnEdit="True" Width="160" SelectionChanged="FirmSelectionChanged" Margin="135,56,0,0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox x:Name="chkFirm" Width="220" Checked="FirmCheckedAndUnchecked" Unchecked="FirmCheckedAndUnchecked" Content="{Binding Name}" IsChecked="{Binding CheckStatus}" CommandParameter="{Binding ID}"  />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Button Content="Calculate Totals" HorizontalAlignment="Left" Margin="148,795,0,0" VerticalAlignment="Top" Width="136" Click="CalculateTotalsClick"/>
+            <Button Content="Export Summary" HorizontalAlignment="Left" Margin="320,795,0,0" VerticalAlignment="Top" Width="136" Click="ExportSummaryClick"/>
+
+
+            <DataGrid x:Name="RealitazionDataGrid"  Margin="244,727,290,227"  ItemsSource="{Binding}" IsReadOnly="True" EnableRowVirtualization="False" Visibility="Visible"/>
+            <Button Content="Clear" HorizontalAlignment="Left" Margin="496,795,0,0" VerticalAlignment="Top" Width="136" Click="ClearClick"/>
+            <DatePicker Name="DatePicker" HorizontalAlignment="Left" Margin="17,121,0,0" VerticalAlignment="Top" Height="33" Width="111"  SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+            <CheckBox Name="CalculateByDateCheckBox" Content="Calculate By Date" Unchecked="CheckBox_Checked" HorizontalAlignment="Left" Margin="18,97,0,0" VerticalAlignment="Top" Height="19" Width="156" Checked="CheckBox_Checked"/>
+            <Label Name="FundedText" Content="0 items selected" HorizontalAlignment="Left" Margin="7,33,0,0" VerticalAlignment="Top" Width="103" Background="#00000000" Foreground="#FFEA0707"/>
+            <Label Name="FirmText" Content="0 items selected" HorizontalAlignment="Left" Margin="149,33,0,0" VerticalAlignment="Top" Width="103" Background="#00000000" Foreground="#FFEA0707"/>
+            <Label Name="ActionText" Content="0 items selected" HorizontalAlignment="Left" Margin="325,33,0,0" VerticalAlignment="Top" Width="103" Background="#00000000" Foreground="#FFEA0707"/>
+            <Label Name="CaseTypeText" Content="0 items selected" HorizontalAlignment="Left" Margin="501,33,0,0" VerticalAlignment="Top" Width="103" Background="#00000000" Foreground="#FFEA0707"/>
+            <Label Name="NatureText" Content="0 items selected" HorizontalAlignment="Left" Margin="667,33,0,0" VerticalAlignment="Top" Width="103" Background="#00000000" Foreground="#FFEA0707"/>
+
+        </Grid>
+    </ScrollViewer>
+</Page>

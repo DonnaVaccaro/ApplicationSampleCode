@@ -1,0 +1,28 @@
+﻿<Page x:Class="OTS.View.CaseReport"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OTS.View"
+      mc:Ignorable="d" 
+     
+      Title="CaseReport"  Height="Auto"  Width="Auto" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"   d:DesignWidth="950.8" d:DesignHeight="1381.6">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid Name="UpdateCaseGrid" Background="#FFB4B4B4"  Height="1260"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <DataGrid x:Name="ExportCaseLoanDataGrid" Margin="34,43,0,0" HorizontalAlignment="Left" Height="136"  VerticalAlignment="Top" Width="648" ItemsSource="{Binding}" IsReadOnly="True"  MouseDoubleClick="LoanDataGridMouseDoublClick" />
+            <DataGrid x:Name="ExportCaseDataGrid" AutoGenerateColumns="True"  Margin="34,219,0,0" HorizontalAlignment="Left" Height="163"  VerticalAlignment="Top" Width="648" ItemsSource="{Binding}" IsReadOnly="True"  AutoGeneratingColumn="EnhancedDataGrid_AutoGeneratingColumn">
+
+            </DataGrid>
+
+            <Button Name="UpdateCaseSearchButton" Content="Search" HorizontalAlignment="Left" Height="28" Margin="566,10,0,0" VerticalAlignment="Top" Width="116" Click="UpdateCaseSearchButtonClick"/>
+            <TextBox x:Name="UpdateCaseSearchTextBox" HorizontalAlignment="Left" Margin="169,13,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="375" Height="22"  KeyDown="textBoxTest_KeyDown"/>
+            <Label Content="Search borrower" HorizontalAlignment="Left" Margin="12,11,0,0" VerticalAlignment="Top"/>
+            <Label Content="Case list to export" HorizontalAlignment="Left" Margin="13,187,0,0" VerticalAlignment="Top"/>
+            <Button Content="Export" HorizontalAlignment="Left" Margin="80,473,0,0" VerticalAlignment="Top" Height="31" Width="103" Click="ExportButtonClick"/>
+            <Button Content="Clear" HorizontalAlignment="Left" Margin="232,473,0,0" VerticalAlignment="Top" Height="31" Width="103" Click="ClearButtonClick"/>
+          
+        </Grid>
+
+    </ScrollViewer>
+</Page>
